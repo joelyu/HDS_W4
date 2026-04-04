@@ -1,0 +1,105 @@
+---
+title: "Plots for breast cancer"
+author: "cyy36@cam.ac.uk"
+date: today
+bibliography: references.bib
+csl: nature.csl
+link-citations: true
+execute:
+  warning: false
+  message: false
+  echo: false
+  cache: false
+format:
+  html:
+    toc: true
+    toc-location: left
+    toc-depth: 2
+    embed-resources: true
+    theme:
+      light: flatly
+      dark: darkly
+---
+
+# Cover Page {.unnumbered .unlisted}
+
+<center>
+![](https://onlinecareeraccelerators.pace.cam.ac.uk/hubfs/CAM%20DS%20PACE/Professional%20and%20Continuing%20Education_V_reversed%20colour%201.svg)
+</center>
+
+### MSt Healthcare Data Science {.unnumbered .unlisted}
+
+#### Authentication of practice
+
+|   |   |
+|---|---|
+|I confirm that I have fully read and understood the [assignment brief](https://vle.pace.cam.ac.uk/mod/page/view.php?id=2419694) for this module.| **Y** |
+
+#### Details
+
+|   |   |
+|---|---|
+|Name: Chung Yan|Surname: Yu|
+|Submission Date|   |
+|Word Count: whole assignment including codes|  |
+|Word Count: main body excluding abstract, references and supplementary materials|  |
+
+#### Permission to share your assignment
+
+I do give permission to share my assignment with future MSt participants.
+
+#### University statement of originality
+
+This assignment is the result of my own work and includes nothing which is the outcome of work done in collaboration except as declared in the Preface and specified in the text. It is not substantially the same as any that I have previously submitted for a degree or diploma or other qualification at the University of Cambridge or any other university or similar institution, or that is being concurrently submitted, except as declared in the Preface and specific in the text. I further state that no substantial part of my Portfolio has already been submitted, nor is being concurrently submitted for any such degree, diploma or other qualification at the University of Cambridge or any other university or similar institution except as declared in the Preface and specified in the text.
+
+|   |   |
+|---|---|
+|I confirm the statement of originality as above| **Y** |
+
+
+#### Questions for reflection
+
+Self-assessment is an important aspect of feedback literacy, which is, in turn, key to the development of expertise. As you proceed through the MSt Healthcare data science programme, we hope that you will make use of the following prompts to assess your own work on assignments. Specific assignment briefs will likely indicate which of these to address for which assessments, but, in general, we expect you to respond to one or two for each assignment on your course.
+
+For each of the questions, do not spend too long answering – keep it brief. For each question you answer, limit yourself to no more than three items. And please remember, this is optional and developmental: these cover sheets are designed to create space for self-assessment and feedback dialogue, rather than additional assignment workload.
+
+1. Which aspects of this assignment are you most uncertain about and/or would most like to receive feedback on?
+
+- 
+
+2. What elements are you left pondering after this assignment that you would like to discuss further?
+
+- 
+
+3. How have you incorporated feedback from peers and tutors into this assignment?
+
+- 
+
+4. How, and to what extent, have you been able to incorporate feedback on previous course work into this assignment?
+
+- 
+
+5. Using the wording in the rubric, how would you describe the quality of the different aspects of your work?
+
+
+### Declaration of the use of generative AI {.unnumbered .unlisted}
+
+|   |   |
+|---|---|
+|Which permitted use of generative AI are you acknowledging?| Semantic search of literature and notes, outline creation, output formatting, informed feedback, code generation |
+|Which generative AI tool did you use (name and version)?| Claude Code v2.1.1x (Opus 4.6), M365 CoPilot |
+|What did you use the tool for?| Searching for relevant journal publications (via PubMed MCP), collating notes in my Obsidian vault, `.bib` file curation, code debugging+generation |
+|How have you used or changed the generative AI's output| My collated notes always stay in point form so that I write out the paragraphs in my own words. Feedback provided by the GenAI models are weighed and assessed before being acted on. |
+
+
+> The GitHub repository of this project is found at .
+
+# Abstract
+
+
+# References
+
+::: {#refs}
+:::
+
+
