@@ -1,5 +1,5 @@
 ---
-title: "Plots for breast cancer"
+title: "Cytotoxic immune infiltration effects on breast cancer survival and immunotherapy response"
 author: "cyy36@cam.ac.uk"
 date: today
 bibliography: references.bib
@@ -33,14 +33,14 @@ format:
 
 |   |   |
 |---|---|
-|I confirm that I have fully read and understood the [assignment brief](https://vle.pace.cam.ac.uk/mod/page/view.php?id=2419694) for this module.| **Y** |
+|I confirm that I have fully read and understood the [assignment brief](https://vle.pace.cam.ac.uk/mod/folder/view.php?id=2440175) for this module.| **Y** |
 
 #### Details
 
 |   |   |
 |---|---|
 |Name: Chung Yan|Surname: Yu|
-|Submission Date|   |
+|Submission Date| 10 April 2026 |
 |Word Count: whole assignment including codes|  |
 |Word Count: main body excluding abstract, references and supplementary materials|  |
 
@@ -65,19 +65,18 @@ For each of the questions, do not spend too long answering – keep it brief. Fo
 
 1. Which aspects of this assignment are you most uncertain about and/or would most like to receive feedback on?
 
-- 
+- A1 size is more of a newer size/scale for me, so I might have packed things too densely here. To keep the captions light, I also stuffed quite a lot of stats in the plots itself, not sure if that is done well or is suitable.
 
 2. What elements are you left pondering after this assignment that you would like to discuss further?
 
-- 
+- It feels a bit much to add an addendum to this write up, so maybe I will just write things out here. The smaller size of A1 definitely threw me off a bit, as I really struggled to fit everything into the poster. I might also have spent a bit too much time playing around with the Cox assumption testing rather than ggplot itself, which feels like a shame. I do hope I will still have opportunities to really give ggplot a good go in future assignments. Overall this assignment felt tougher than the previous qmd based tasks, possibly due to the constant trial and error with the layout. With the qmd, everything just scrolls down sequentially so there is less mental load there. I had thought this assignment would be the lightest one so far, given my previous experience with academic posters, but it ended up being the opposite. Really trying to make everything fit in just right takes a lot of effort, so much so that I think some of my previous thoughts/comments on other already published visualisations we discussed in class too harsh. 
 
 3. How have you incorporated feedback from peers and tutors into this assignment?
 
-- 
+- Managed to try the Cox assumption testing this time. I think some of the assumptions might be borderline violated, but might still work given the circumstance?
 
 4. How, and to what extent, have you been able to incorporate feedback on previous course work into this assignment?
 
-- 
 
 5. Using the wording in the rubric, how would you describe the quality of the different aspects of your work?
 
@@ -87,54 +86,36 @@ For each of the questions, do not spend too long answering – keep it brief. Fo
 |   |   |
 |---|---|
 |Which permitted use of generative AI are you acknowledging?| Semantic search of literature and notes, outline creation, output formatting, informed feedback, code generation |
-|Which generative AI tool did you use (name and version)?| Claude Code v2.1.1x (Opus 4.6), M365 CoPilot |
-|What did you use the tool for?| Searching for relevant journal publications (via PubMed MCP), collating notes in my Obsidian vault, `.bib` file curation, code debugging+generation |
+|Which generative AI tool did you use (name and version)?| Claude Code v2.1.1x (Opus 4.6), M365 CoPilot, GitHub CoPilot |
+|What did you use the tool for?| Searching for relevant journal publications, collating notes in my Obsidian vault, `.bib` file curation, code debugging+generation |
 |How have you used or changed the generative AI's output| My collated notes always stay in point form so that I write out the paragraphs in my own words. Feedback provided by the GenAI models are weighed and assessed before being acted on. |
 
 
-> The GitHub repository of this project is found at .
+> The GitHub repository of this project is found [here](https://github.com/joelyu/HDS-W4.git).
 
 # Design rationale
 
-<!--
-Max 250 words. Include:
-  - Intended audience (who, why)
-  - Colour palette choices
-  - Labelling and annotation strategy
-  - Layout and visual hierarchy
-  - Any audience-specific decisions
--->
+This poster targets researchers at cancer, immuno-oncology or genomic research conferences, where readers are already fluent in survival analysis, cancer hallmarks and subtypes, and scientific poster conventions in general. 
 
-*[To be written — 250 word limit]*
+The poster is intended to be read top-to-bottom, with the main content focused on the left, and more supplementary materials such as illustrations and methods to the right. The headline numbers on the top-left anchor the reader with the top strip, and along with the background statements, orient the reader with the premise. Clear section headings with consistent colouring guide the reader down through figures 1 and 2. The conclusion sits at the bottom right as the natural end of the poster, with the main message used as the header for a quick and easy read.
 
-# Data access
+The Okabe-Ito colour palette is used for colour-blind accessibility, and each cohort is consistently associated with one colour. The orange colour makes up the colour theme of the poster as used in banners and cell illustrations.
 
-**Data sources**
+Minimalistic plots are used to put the main focus on the data, to the extent some panels share a y-axis. Relevant statistics are embedded with the legend keys rather than buried in the captions. Data provenance and processing are denoted in visual flow charts for intuitive comprehension. Obvious conventions such as p-value significance notation are presumed self-explanatory given the background of the audience. The Source Sans font was used for a modern finish, save for a monospaced font used for R package names. 
 
-- METABRIC — breast cancer cohort (n ≈ 1,904) [@curtis2012genomic]
-- TCGA BRCA — PanCancer Atlas 2018 cohort (n ≈ 1,082) [@tcga2012comprehensive; @hoadley2018cell]
-- I-SPY2 — neoadjuvant trial microarray cohort (GSE194040) [@wolf2022redefining]
-- Danaher panel — immune cell gene markers (14 populations) [@danaher2017gene]
 
-**Data access tools**
+# Figures & code
 
-- cBioPortal — API access for METABRIC and TCGA BRCA [@cerami2012cbioportal; @gao2013integrative; @debruijn2023analysis]
-- GEO — public archive hosting I-SPY2 (GSE194040) [@edgar2002geo; @clough2024geo]
+## Setup
 
-**Software**
+### Data analysis
 
-- R statistical computing environment [@r2026]
-- survival — Cox proportional-hazards and Kaplan–Meier estimation [@therneau2000survival]
-- ggplot2 — grammar-of-graphics visualisation [@wickham2016ggplot2]
-- tidyverse — data wrangling (dplyr, tidyr) [@wickham2019tidyverse]
-- cBioPortalData — Bioconductor client for cBioPortal API [@ramos2020cbioportaldata]
-- GEOquery — Bioconductor client for GEO [@davis2007geoquery]
-
-# Setup
+Analyses are done via scripts in the repository, plot generation is done in code chunks in this document.
 
 ```{r}
 #| label: setup
 #| include: false
+#| code-summary: "Setup code"
 
 # Only load packages used directly in this document's chunks.
 # Data-pipeline packages (dplyr, tidyr, tibble, survival, GEOquery,
@@ -158,27 +139,25 @@ invisible(capture.output(suppressMessages({
 })))
 ```
 
-# Plot theme and palette
+### Plot theme and palette
+
+Setting up usage of Okabe-Ito colourblind-safe palette and a clean and minmal theme. Assigning colors to cohorts as well.
 
 ```{r}
 #| label: plot-theme
 #| echo: true
+#| code-fold: true
+#| code-summary: "Theme setup code"
 
 # ------------------------------------------------------------------
 # Palette — Okabe-Ito colourblind-safe set, assigned to narrative
 # roles so each colour has one job across all figures.
 #
-#   METABRIC (discovery cohort)         → blue
-#   TCGA (validation cohort)            → bluish green
-#   Pembrolizumab arm (Fig 3B only)     → vermillion
-#   Tumour / central illustration only  → reddish purple
+#   METABRIC (discovery cohort)         → orange/Okabe-Ito vermillion,
+#   TCGA (validation cohort)            → blue/Okabe-Ito blue, 
+#   Pembrolizumab arm (Fig 3B only)     → purple/Okabe-Ito reddish purple,
 #   Control / neutral / background      → dark grey
-#   Highlight box fill (forest plots)   → cream
 #
-# Every figure uses at most 2–3 of these at once (Nature-style 3–4
-# colour limit). Emphasis on the cytotoxic signature is carried by
-# box overlays and shape, not by an extra colour — keeping colour
-# reserved for categorical cohort encoding.
 # ------------------------------------------------------------------
 
 PALETTE <- list(
@@ -202,8 +181,6 @@ ARM_COLOURS <- c(
 
 # ------------------------------------------------------------------
 # theme_hds() — clean, Tufte-inspired, axis-only, white background
-# Designed at base_size=14 for .qmd preview; figures scale up in
-# Illustrator for A1 export (minimums: 24pt axis, 22pt ticks).
 # ------------------------------------------------------------------
 theme_hds <- function(base_size = 14) {
   theme_classic(base_size = base_size) +
@@ -238,7 +215,7 @@ scale_colour_arm    <- function(...) scale_colour_manual(values = ARM_COLOURS, .
 scale_fill_arm      <- function(...) scale_fill_manual(values = ARM_COLOURS, ...)
 
 # Diverging gradient for heatmaps: blue ↔ white ↔ vermillion
-# (reuses METABRIC and pembro colours as palette anchors)
+# (reuses METABRIC and TCGA colours as palette anchors)
 scale_fill_diverging <- function(limits = c(-1, 1), ...) {
   scale_fill_gradient2(
     low      = PALETTE$tcga,
@@ -251,17 +228,20 @@ scale_fill_diverging <- function(limits = c(-1, 1), ...) {
 }
 ```
 
-# Figures
+## Figures
 
-## Figure 1 — Identification of cytotoxic cells as a cross-cohort immune axis
+### Figure 1 — Identifying representative immune population across two cohorts
 
-*Claim: Across 14 immune populations, cytotoxic cells anchor a dominant immune axis consistent across METABRIC and TCGA, interchangeable with B-cells and CD8 T-cells by collinearity.*
+#### 1A. Forest plot
 
-### 1A. Forest plot: 14 cell populations, PAM50-adjusted HRs, both cohorts
+14 cell populations, PAM50-adjusted HRs, fully-adjusted HRs for cytotoxic cells, both cohorts (METABRIC, TCGA)
 
 ```{r}
-#| label: fig-1a-forest
-#| fig-width: 7
+#| label: plot-1a-forest
+#| echo: true
+#| code-fold: true
+#| code-summary: "Figure 1A code"
+#| fig-width: 9
 #| fig-height: 8
 
 # --- Prepare data -----------------------------------------------------------
@@ -382,7 +362,7 @@ fig_1a <- ggplot(forest_data,
   ) +
   scale_shape_manual(
     values = c("Screening" = 16, "Confirmatory" = 18),
-    guide  = guide_legend(override.aes = list(colour = "black"))
+    guide  = "none"
   ) +
   labs(
     x = "Hazard ratio (per 1 SD, 95% CI)",
@@ -397,14 +377,20 @@ fig_1a <- ggplot(forest_data,
     legend.box = "vertical"
   )
 
+# Save the plot as SVG, fiddle with the size here.
 ggsave("poster/fig_1a.svg", fig_1a, width = 7, height = 8, device = "svg")
 fig_1a
 ```
 
-### 1B. Cleveland dot plot — PC1 loadings by cohort
+#### 1B. Lollipop/Cleveland plot
+
+Comparing PC1 loadings across METABRIC and TCGA cohorts.
 
 ```{r}
-#| label: fig-1b-loadings
+#| label: plot-1b-loadings
+#| echo: true
+#| code-fold: true
+#| code-summary: "Figure 1B code"
 #| fig-width: 7
 #| fig-height: 6
 
@@ -464,14 +450,20 @@ fig_1b <- ggplot(loadings_clev_long, aes(x = loading, y = cell_type)) +
     legend.justification = "left"
   )
 
+# Save the plot as SVG, fiddle with the size here.
 ggsave("poster/fig_1b.svg", fig_1b, width = 5, height = 6, device = "svg")
 fig_1b
 ```
 
-### 1C. Collinearity heatmap (METABRIC, 14 × 14)
+#### 1C. Collinearity heatmap
+
+Examining collinearity between cell type scores in METABRIC.
 
 ```{r}
-#| label: fig-1c-heatmap
+#| label: plot-1c-heatmap
+#| echo: true
+#| code-fold: true
+#| code-summary: "Figure 1C code"
 #| fig-width: 7
 #| fig-height: 6
 
@@ -488,8 +480,8 @@ corr_m <- cor(surv_metabric[, score_cols_2b], use = "pairwise.complete.obs")
 corr_m <- corr_m[cell_order_clev, cell_order_clev]
 
 # Blank the LOWER matrix triangle — with ascending factor ordering
-# (cytotoxic at the top of the y-axis), lower.tri() blanks the bottom-right
-# visually, leaving the top-left triangle visible. Cytotoxic sits at the
+# (cytotoxic at the top of the y-axis), lower.tri() blanks the top-right
+# visually, leaving the bottom-left triangle visible. Cytotoxic sits at the
 # top with the longest visible row extending rightward from the diagonal.
 corr_m[upper.tri(corr_m)] <- NA
 
@@ -523,6 +515,7 @@ fig_1c <- ggplot(corr_long, aes(x = cell_a, y = cell_b, fill = r)) +
     panel.border = element_rect(colour = NA, fill = NA)
   )
 
+# Save the plot as SVG, fiddle with the size here.
 ggsave("poster/fig_1c.svg", fig_1c, width = 7, height = 6, device = "svg")
 fig_1c
 ```
@@ -532,14 +525,17 @@ fig_1c
 **(B)** Absolute PC1 loadings per population across both cohorts.
 **(C)** Pairwise Pearson correlations in METABRIC, ordered by PC1 loading.
 
-## Figure 2 — Clinical translation
+### Figure 2 — Association with survival and response
 
-*Claim: Higher cytotoxic infiltration is associated with longer survival (METABRIC) and improved pCR in the I-SPY2 pembrolizumab arm.*
+#### 2A. Kaplan-Meier curve
 
-### 2A. Kaplan-Meier — cytotoxic high vs low (METABRIC)
+Median split of cytotoxic scores in the METABRIC cohort, unadjusted.
 
 ```{r}
-#| label: fig-2a-km
+#| label: plot-2a-km
+#| echo: true
+#| code-fold: true
+#| code-summary: "Figure 2A code"
 #| fig-width: 7
 #| fig-height: 5
 
@@ -575,17 +571,25 @@ fig_2a <- km_plot$plot +
   guides(
     colour = guide_legend(override.aes = list(fill = NA)),
     fill   = "none"
-  )
-
+  ) +
+  scale_y_continuous(
+    breaks = c(0, 0.25, 0.5, 0.75, 1),
+    labels = c("0.00", "0.25", "0.50", "0.75", "1.00"),
+#    limits = c(-0.05, 1.05)
+  ) 
+# Save the plot as SVG, fiddle with the size here.
 ggsave("poster/fig_2a.svg", fig_2a, width = 6, height = 5, device = "svg")
 fig_2a
 ```
 
-### 2B. I-SPY2 logistic curves (pembro vs control)
+#### 2B. I-SPY2 logistic curves
 
 ```{r}
-#| label: fig-2b-logistic
-#| fig-width: 7
+#| label: plot-2b-logistic
+#| echo: true
+#| code-fold: true
+#| code-summary: "Figure 2B code"
+#| fig-width: 9
 #| fig-height: 5
 
 # --- Prepare data: stack pembro + control with arm label and pooled cyto_z --
@@ -598,16 +602,22 @@ ispy_plot_data <- pooled %>%
     )
   )
 
-# --- Build legend labels with n + OR from the logistic results CSV ---------
+# --- Build legend labels with n, OR, p from the logistic results CSV --------
 ispy_results <- read.csv("data/processed/ispy2_pembro_logistic.csv")
 or_pembro  <- ispy_results$OR[grepl("Pembrolizumab", ispy_results$arm)]
+p_pembro   <- ispy_results$p_value[grepl("Pembrolizumab", ispy_results$arm)]
 n_pembro   <- ispy_results$n[grepl("Pembrolizumab", ispy_results$arm)]
 or_control <- ispy_results$OR[grepl("control", ispy_results$arm, ignore.case = TRUE)]
+p_control  <- ispy_results$p_value[grepl("control", ispy_results$arm, ignore.case = TRUE)]
 n_control  <- ispy_results$n[grepl("control", ispy_results$arm, ignore.case = TRUE)]
 
+# Interaction p-value (cytotoxic × arm)
+interaction_df <- read.csv("data/processed/ispy2_interaction.csv")
+p_interact <- interaction_df$Pr...z..[grepl("Cytotoxic.*is_pembro", interaction_df$term)]
+
 arm_labels <- c(
-  "Pembrolizumab" = sprintf("Pembrolizumab (n = %d, OR = %.2f)", n_pembro, or_pembro),
-  "Control"       = sprintf("Control (n = %d, OR = %.2f)", n_control, or_control)
+  "Pembrolizumab" = sprintf("Pembrolizumab (n = %d, OR = %.2f, p = %.3f)", n_pembro, or_pembro, p_pembro),
+  "Control"       = sprintf("Control (n = %d, OR = %.2f, p = %.3f)", n_control, or_control, p_control)
 )
 
 fig_2b <- ggplot(ispy_plot_data,
@@ -630,9 +640,12 @@ fig_2b <- ggplot(ispy_plot_data,
   scale_fill_arm(guide = "none") +  # hide fill from legend — only line shows
   scale_y_continuous(
     breaks = c(0, 0.25, 0.5, 0.75, 1),
-    labels = c("0", "0.25", "0.50", "0.75", "1"),
+    labels = c("0.00", "0.25", "0.50", "0.75", "1.00"),
     limits = c(-0.05, 1.05)
   ) +
+  annotate("text", x = Inf, y = 0.05,
+           label = sprintf("Interaction p = %.2f", p_interact),
+           hjust = 1, size = 3, colour = "grey40") +
   labs(
     x = "Cytotoxic immune cell population score (normalised & pooled)",
     y = "Pathological complete response",
@@ -645,26 +658,54 @@ fig_2b <- ggplot(ispy_plot_data,
     legend.justification = "left"
   )
 
+# Save the plot as SVG, fiddle with the size here.
 ggsave("poster/fig_2b.svg", fig_2b, width = 6, height = 5, device = "svg")
 fig_2b
 ```
 
-**Figure 2** | **Cytotoxic infiltration associates with survival and immunotherapy response.**
+**Figure 2** | **Cytotoxic infiltration associates with survival and chemotherapy response.**
 **(A)** Kaplan–Meier overall survival in METABRIC by median split of cytotoxic score.
-**(B)** Logistic regression of pathological complete response against pooled cytotoxic score in the I-SPY2 pembrolizumab arm (n = 69) and paclitaxel control (n = 179). Shaded bands: 95% CI.
+**(B)** Logistic regression of pathological complete response against pooled cytotoxic score in the I-SPY2 pembrolizumab + paclitaxel arm (n = 69) and paclitaxel-only control (n = 179). Both arms show a significant association; the interaction term is non-significant (p = 0.35), suggesting a prognostic rather than predictive effect. Shaded bands: 95% CI.
+
+
+# Data & methods
+
+## Data sources
+
+- METABRIC — breast cancer cohort (n ≈ 1,904) [@curtis2012genomic]
+- TCGA BRCA — PanCancer Atlas 2018 cohort (n ≈ 1,082) [@tcga2012comprehensive; @hoadley2018cell]
+- I-SPY2 — neoadjuvant trial microarray cohort (GSE194040) [@wolf2022redefining]
+- Danaher panel — immune cell gene markers (14 populations) [@danaher2017gene]
+
+## Data access tools
+
+- cBioPortal — API access for METABRIC and TCGA BRCA [@cerami2012cbioportal; @gao2013integrative; @debruijn2023analysis]
+- GEO — public archive hosting I-SPY2 (GSE194040) [@edgar2002geo; @clough2024geo]
+
+## Software
+
+- R statistical computing environment [@r2026]
+- survival — Cox proportional-hazards and Kaplan–Meier estimation [@therneau2000survival]
+- ggplot2 — grammar-of-graphics visualisation [@wickham2016ggplot2]
+- tidyverse — data wrangling (dplyr, tidyr) [@wickham2019tidyverse]
+- cBioPortalData — Bioconductor client for cBioPortal API [@ramos2020cbioportaldata]
+- GEOquery — Bioconductor client for GEO [@davis2007geoquery]
+
+# References
+
+::: {#refs}
+:::
+
 
 # Supplementary figures
 
 ## Cox assumption tests
 
-### Schoenfeld residuals (proportional hazards)
+### S1. Schoenfeld residuals (proportional hazards)
 
-Each panel plots the scaled Schoenfeld residual for one model term against
-transformed survival time. A flat trend indicates the proportional hazards
-assumption holds.
 
 ```{r}
-#| label: fig-sup-schoenfeld
+#| label: plot-sup-schoenfeld
 #| fig-width: 10
 #| fig-height: 8
 
@@ -729,14 +770,12 @@ fig_sup_sch <- ggplot(sch_df, aes(x = time, y = resid, colour = cohort, fill = c
 fig_sup_sch
 ```
 
-### Martingale residuals (linearity)
+### S2. Martingale residuals (linearity)
 
-Martingale residuals from a null Cox model (confounders only, no cytotoxic)
-plotted against the raw cytotoxic score. A flat or straight-line trend
-means the linear assumption is appropriate.
+Martingale residuals from a null Cox model (confounders only, no cytotoxic) plotted against the raw cytotoxic score.
 
 ```{r}
-#| label: fig-sup-martingale
+#| label: plot-sup-martingale
 #| fig-width: 10
 #| fig-height: 4
 
@@ -773,13 +812,12 @@ fig_sup_mart
 
 ## PCA variance structure
 
-### Scree plot
+### S3. Scree plot
 
-PC1 dominates the immune axis with ~38% variance, justifying the
-single-component focus in Figure 2.
+PC1 dominates the immune axis with ~38% variance.
 
 ```{r}
-#| label: fig-sup-scree
+#| label: plot-sup-scree
 #| fig-width: 6
 #| fig-height: 4
 
@@ -807,10 +845,3 @@ fig_sup_scree <- ggplot(scree_df, aes(x = pc, y = variance, group = 1)) +
 
 fig_sup_scree
 ```
-
-# References
-
-::: {#refs}
-:::
-
-
